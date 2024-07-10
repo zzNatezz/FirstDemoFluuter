@@ -5,16 +5,22 @@ import 'package:flutter/material.dart';
 class ChatPage extends StatelessWidget {
   const ChatPage({Key? key}) : super(key: key);
 
+  void backToLogin(context) {
+    Navigator.pushReplacementNamed(context, '/');
+  }
+
   @override
   Widget build(BuildContext context) {
+    final userName = ModalRoute.of(context)!.settings.arguments as String;
+
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.cyan,
-        title: const Text('Chat appppppp'),
+        title: Center(child: Text('Hi $userName')),
         actions: [
           IconButton(
             onPressed: () {
-              print('function is being processed');
+              backToLogin(context);
             },
             icon: const Icon(Icons.logout),
           )
@@ -30,10 +36,10 @@ class ChatPage extends StatelessWidget {
                       alignment: index % 2 == 0
                           ? Alignment.centerRight
                           : Alignment.centerLeft,
-                      message: "Hello",
+                      message: "Finished Navigate!",
                     );
                   })),
-          const Chatinput()
+          Chatinput()
         ],
       ),
     );
